@@ -33,7 +33,7 @@ testApp.controller("testController", function($scope, $http) {
   //    Our GET request function
   $scope.getRequest = function() {
     console.log("I've been pressed!");
-	MyApp.controller('dataShow', function ($scope, $http){
+	testApp.controller("dataShow", function ($scope, $http){
     $http.get("/users").then(
       function successCallback(response) 
 	  {
