@@ -5,20 +5,7 @@
   </head>
   <body ng-controller="testController">
     <h2>$http Service</h2>
-
     <button ng-click="getRequest()">Test Rest</button>
-<table>
- <thead>
-  <tr>
-   <th ng-repeat="(header, value) in MyRecCollection[0]">{{header}}</th>
-  </tr>
- </thead>
- <tbody>
-  <tr ng-repeat="row in MyRecCollection | filter:searchText">
-   <td ng-repeat="cell in row">{{cell}}</td>
-  </tr>
- </tbody>
-</table>
     <script>
 	console.log("i am inside create table")
 var testApp = angular.module('testApp', [])
@@ -33,19 +20,17 @@ testApp.controller("testController", function($scope, $http) {
   //    Our GET request function
   $scope.getRequest = function() {
     console.log("I've been pressed!");
-	testApp.controller("dataShow", function ($scope, $http){
     $http.get("/users").then(
-      function successCallback(response) 
+      function successCallback(res) 
 	  {
-        $scope.response = response;
+        $scope.response=res.data;
 		console.log($scope.response);
-      },
+	  },
       function errorCallback(response) {
         console.log("Unable to perform get request");
       }
     );
- 
-  });
+  };
 
   //    Our POST request function
   $scope.postRequest = function() {
@@ -58,9 +43,20 @@ testApp.controller("testController", function($scope, $http) {
       }
     );
   };
-};
 });
-
-	</script>
-  </body>
+</script>	
+	<table border="1">
+    <tbody ng-repeat="i in response">
+    <tr>
+	<td>{{i.actor_id}}</td>
+	<td>{{i.first_name}}</td>
+	<td>{{i.last_name}}</td>
+	</tr>
+    </tbody>
+    </table>
+</body>
 </html>
+
+
+
+

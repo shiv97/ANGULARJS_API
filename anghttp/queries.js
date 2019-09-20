@@ -8,6 +8,7 @@ const pool = new Pool({
 })
 
 const getUsers = (request, response) => {
+	console.log("Get users funtion");
   pool.query('SELECT * FROM actor', (error, results) => {
     if (error) {
       throw error
